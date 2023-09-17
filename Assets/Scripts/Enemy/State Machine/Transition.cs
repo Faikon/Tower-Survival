@@ -9,7 +9,6 @@ public class Transition : MonoBehaviour
     protected Tower Target { get; private set; }
 
     public State TargetState => _targetState;
-
     public bool NeedTransit { get; protected set; }
 
     public void Init(Tower target)

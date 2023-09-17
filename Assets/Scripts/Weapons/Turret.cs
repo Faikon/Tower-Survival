@@ -17,7 +17,7 @@ public class Turret : Weapon
             return;
         }
 
-        if (_currentCooldown <= 0)
+        if (CurrentCooldown <= 0)
         {
             Shoot();
         }
@@ -36,7 +36,7 @@ public class Turret : Weapon
 
     private void Shoot()
     {
-        _currentCooldown = CooldownDuration;
+        CurrentCooldown = CooldownDuration;
 
         Vector3 direction = (_target.position - transform.position).normalized;
         Projectile bullet = Instantiate((Projectile)Bullet, transform.position, Quaternion.identity);

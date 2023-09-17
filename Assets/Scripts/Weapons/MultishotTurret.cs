@@ -15,7 +15,7 @@ public class MultishotTurret : Weapon
 
         FindTargets();
 
-        if (_currentCooldown <= 0 && _targets != null)
+        if (CurrentCooldown <= 0 && _targets != null)
         {
             Shoot();
         }
@@ -42,7 +42,7 @@ public class MultishotTurret : Weapon
 
     private void Shoot()
     {
-        _currentCooldown = CooldownDuration;
+        CurrentCooldown = CooldownDuration;
 
         for (int i = 0; i < _targets.Length && _targets[i] != null; i++)
         {

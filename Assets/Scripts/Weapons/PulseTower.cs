@@ -8,10 +8,10 @@ public class PulseTower : Weapon
     {
         base.Update();
 
-        if (_currentCooldown <= 0)
+        if (CurrentCooldown <= 0)
         {
             Instantiate(Bullet, transform.position, Quaternion.identity);
-            _currentCooldown = CooldownDuration;
+            CurrentCooldown = CooldownDuration;
         }
     }
 }

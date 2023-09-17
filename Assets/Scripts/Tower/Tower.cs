@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Tower : MonoBehaviour
 {
@@ -9,11 +10,11 @@ public class Tower : MonoBehaviour
     public event UnityAction<int> MoneyChanged;
 
     [SerializeField] private float _maxHealth;
+    [SerializeField] private LoseScreen _loseScreen;
 
     private float _currentHealth;    
 
     public float MaxHealth => _maxHealth;
-
     public int Money { get; private set; }
 
     private void Start()
@@ -28,7 +29,8 @@ public class Tower : MonoBehaviour
 
         if (_currentHealth <= 0 )
         {
-            Destroy(gameObject);
+            _loseScreen.gameObject.SetActive(true);
+            Destroy(gameObject);         
             Time.timeScale = 0;
         }
     }

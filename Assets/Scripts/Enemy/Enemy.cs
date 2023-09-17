@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class Enemy : MonoBehaviour
 {
+    public event UnityAction<Enemy> Dying;
+
     [SerializeField] private float _health;
     [SerializeField] private int _reward;
     [SerializeField] private GameObject _deathParticle;
@@ -14,8 +16,6 @@ public class Enemy : MonoBehaviour
 
     public int Reward => _reward;
     public Tower Target => _target;
-
-    public event UnityAction<Enemy> Dying;
 
     public void Init(Tower target)
     {

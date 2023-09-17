@@ -14,7 +14,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected float CooldownDuration;
     [SerializeField] protected Bullet Bullet;
 
-    protected float _currentCooldown;
+    protected float CurrentCooldown;
 
     public string Label => _label;
     public int Price => _price;
@@ -22,11 +22,11 @@ public abstract class Weapon : MonoBehaviour
 
     protected virtual void Start()
     {
-        _currentCooldown = CooldownDuration;
+        CurrentCooldown = CooldownDuration;
     }
 
     protected virtual void Update()
     {
-        _currentCooldown -= Time.deltaTime;
+        CurrentCooldown -= Time.deltaTime;
     }
 }

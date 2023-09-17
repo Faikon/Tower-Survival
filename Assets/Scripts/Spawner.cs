@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class Spawner : MonoBehaviour
 {
     public event UnityAction<float, float> WaveTimer;
-    public event UnityAction<int, int> EnemyCountChanged;
 
     [SerializeField] private List<Wave> _waves;
     [SerializeField] private Transform _spawnPoint;
@@ -62,13 +61,18 @@ public class Spawner : MonoBehaviour
             InstantiateEnemy();
             _spawned++;
             _timeAfterLastSpawn = 0;
-            EnemyCountChanged?.Invoke(_spawned, _currentWave.Count);
         }
 
         if (_currentWave.Count <= _spawned)
         {
             _currentWave = null;
         }
+    }
+
+    public void NextWave()
+    {
+        SetWave(++_currentWaveIndex);
+        _spawned = 0;
     }
 
     private void InstantiateEnemy()
@@ -89,20 +93,5 @@ public class Spawner : MonoBehaviour
     {
         _wavesDelay = _timeBetweenWaves;
         _currentWave = _waves[index];
-        EnemyCountChanged?.Invoke(0, 1);
     }
-
-    public void NextWave()
-    {
-        SetWave(++_currentWaveIndex);
-        _spawned = 0;
-    }
-}
-
-[System.Serializable]
-public class Wave
-{
-    public Enemy Enemy;
-    public float Duration;
-    public int Count;
 }
